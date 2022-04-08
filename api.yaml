@@ -1,0 +1,63 @@
+openapi: 3.0.3
+info:
+  title: Redis HTTP Proxy
+  description: Redis HTTP Proxy
+  version: 1.0.0
+
+paths:
+  /get/{key}:
+    get:
+      tags:
+        - Strings
+      description: Get the members in a set. [Redis GET Docs](https://redis.io/commands/get)
+      parameters:
+        - in: path
+          name: key
+          schema:
+            type: string
+          required: true
+      responses:
+        200:
+          description: Returns the value for the key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedisString'
+  /set/{key}:
+    post:
+      tags:
+        - Strings
+      description: Set the value on a key. [Redis SET Docs](https://redis.io/commands/set)
+      parameters:
+        - in: path
+          name: key
+          schema:
+            type: string
+          required: true
+      requestBody:
+        $ref: '#/components/requestBodies/RedisString'
+      responses:
+        200:
+          $ref: '#/components/responses/OkSuccessResponse'
+
+components:
+  schemas:
+    RedisString:
+      type: string
+      example: "bleep"
+  responses:
+    OkSuccessResponse:
+      description: Ok response on success
+      content:
+        application/json:
+          schema:
+            type: string
+            example: OK
+  requestBodies:
+    RedisString:
+      description: Value to set the key to. Can be a string or number
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RedisString'
