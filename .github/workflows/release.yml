@@ -9,9 +9,12 @@ jobs:
     name: Release Windows/amd64
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Go Release Binaries
         uses: wangyoucao577/go-release-action@v1.25
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           goos: windows
           goarch: amd64
+          binary_name: redis-proxy
+          extra_files: public/openapi.html api.yaml
