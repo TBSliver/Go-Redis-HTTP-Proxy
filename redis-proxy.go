@@ -12,9 +12,9 @@ import (
 
 func main() {
 
-	var port = flag.Int("port", 3000, "Port to listen on (default 3000)")
-	var host = flag.String("host", "0.0.0.0", "Host to listen on (default 0.0.0.0)")
-	var redis = flag.String("redis", "redis://localhost:6379/0", "Redis server to connect to (default localhost:6379)")
+	var port = flag.Int("port", 3000, "Port to listen on")
+	var host = flag.String("host", "0.0.0.0", "Host to listen on")
+	var redis = flag.String("redis", "redis://localhost:6379/0", "Redis server to connect to")
 	flag.Parse()
 
 	swagger, err := api.GetSwagger()
