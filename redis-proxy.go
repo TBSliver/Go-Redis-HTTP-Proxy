@@ -31,7 +31,7 @@ func main() {
 
 	docs := e.Group("/docs")
 
-	docs.File("", "public/openapi.html")
+	docs.File("", "openapi.html")
 	docs.File(".yaml", "api.yaml")
 
 	e.Group("/", middleware.OapiRequestValidator(swagger))
