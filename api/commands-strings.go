@@ -17,10 +17,9 @@ func (p Proxy) PostSetKey(ctx echo.Context, key string) error {
 	var newString PostSetKeyJSONRequestBody
 	err := ctx.Bind(&newString)
 	if err != nil {
-		ctx.Logger().Error(err)
 		return sendError(ctx, http.StatusBadRequest, "No Value Sent")
 	}
-	err = p.rdb.Set(ctx.Request().Context(), key, newString, 0).Err()
+	err = p.rdb.Set(ctx.Request().Context(), key, string(newString), 0).Err()
 	if err != nil {
 		return sendError(ctx, http.StatusInternalServerError, "Redis Error")
 	}

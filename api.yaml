@@ -2,7 +2,10 @@ openapi: 3.0.3
 info:
   title: Redis HTTP Proxy
   description: Redis HTTP Proxy
-  version: 1.0.0
+  version: 0.1.2
+
+security:
+  - apiKey: []
 
 paths:
   /get/{key}:
@@ -61,3 +64,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/RedisString'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: query
+      name: api_key

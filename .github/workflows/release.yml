@@ -17,4 +17,3 @@ jobs:
           goos: windows
           goarch: amd64
           binary_name: redis-proxy
-          extra_files: openapi.html api.yaml
